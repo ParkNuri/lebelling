@@ -8,7 +8,10 @@
 
      <style>
 
-         canvas {border:5px solid magenta;}
+         canvas {
+              border:5px solid magenta;
+              background-image: url(https://placeimg.com/600/400/any);
+          }
 
      </style>
 
@@ -32,14 +35,18 @@
 
          <input type="button" id="clear" value="모두 지움"/>
 
+         <input type="button" id="clearone" value="마지막 지움"/>
+
      </div>
-
      <canvas id="canvas" width="600" height="400">
-
+          
          이 브라우저는 캔버스를 지원하지 않습니다.
 
      </canvas>
-
+     <div>
+          <p>좌표 리스트</p>
+          <input id="btnfinish" type="button" value="제출">
+     </div>
      <script>
 
          var canvas;
@@ -58,7 +65,7 @@
 
          var moving = -1;              // 이동중인 도형 첨자
 
-        
+         var arrPosition = new Array();
 
          // 사각형 생성자
 
@@ -238,11 +245,16 @@
 
                    }
 
-                  
-
                    drawing = false;
 
                    moving = -1;
+
+                  
+                    arrPosition.push('좌하좌표 : '+ x1+','+y1 + ' 우상좌표 : '+ x2+','+y2);
+
+                    for(i=0; i<arrPosition.length; i++){
+                         alert(arrPosition[i]);
+                    }
 
               }            
 
@@ -267,6 +279,29 @@
               ctx.clearRect(0, 0, canvas.width, canvas.height);
 
               arRectangle.length = 0;
+
+         }
+
+         var btnclearone = document.getElementById("clearone");
+
+         btnclearone.onclick = function(e) {
+
+              arRectangle.pop();
+              arrPosition.pop();
+              ctx.clearRect(0, 0, canvas.width, canvas.height);
+              drawRects();
+
+         }
+
+         var btnfinish = document.getElementById("btnfinish");
+
+         btnfinish.onclick = function(e) {
+
+              ctx.clearRect(0, 0, canvas.width, canvas.height);
+              arRectangle.length = 0;
+              arrPosition.length = 0;
+              document.getElementById('canvas').style.backgroundImage="url(https://placeimg.com/600/400/any)"
+              document.getElementById('canvas').style.backgroundSize="cover";
 
          }
 

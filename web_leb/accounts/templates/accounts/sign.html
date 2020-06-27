@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../../static/scss/sign.css">
+  <script src="https://code.jquery.com/jquery-2.2.1.js"></script>
+  <title>SignUp</title>
+</head>
+<body>
+  <div id="back">
+    <canvas id="canvas" class="canvas-back"></canvas>
+    <div class="backRight">    
+    </div>
+    <div class="backLeft">
+    </div>
+  </div>
+  
+  <div id="slideBox">
+    <div class="topLayer">
+      <div class="left">
+        <div class="content">
+          <h2>Sign Up</h2>
+          <form id="form-signup" method="post" onsubmit="return false;">
+            <div class="form-element form-stack">
+              <label for="userid-signup" class="form-label">Id</label>
+              <input id="userid-signup" type="text" name="userid">
+            </div>
+            <div class="form-element form-stack">
+              <label for="password-signup" class="form-label">Password</label>
+              <input id="password-signup" type="password" name="password">
+            </div>
+            <div class="form-element form-stack">
+              <label for="passwordcheck-signup" class="form-label">Password_Check</label>
+              <input id="passwordcheck-signup" type="password" name="passwordcheck">
+            </div>
+            <div class="form-element form-stack">
+              <label for="username-signup" class="form-label">Username</label>
+              <input id="username-signup" type="text" name="username">
+            </div>
+            <div class="form-element form-stack">
+              <label for="phone" class="form-label">Phone</label>
+              <input id="phone" type="number" name="phone">
+            </div>
+            <div class="form-element form-stack">
+              <label for="birthday" class="form-label">Birthday</label>
+              <input id="birthday" type="date" name="birthday">
+            </div>
+            <div class="form-element form-stack">
+              <label for="gender" class="form-label">Gender</label>
+              <div class="gender">
+                <label for="man">남자</label>
+                <input type="checkbox" name="gender" value="남자" id="man">
+                <label for="women">여자</label>
+                <input type="checkbox" name="gender" value="여자" id="women">
+              </div>
+            </div>
+            <div class="form-element form-submit">
+              <button id="signUp" class="signup" type="submit" name="signup">Sign up</button>
+              <button id="goLeft" class="signup off">Log In</button> 
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="right">
+        <div class="content">
+          <h2>Login</h2>
+          <form id="form-login" method="post" onsubmit="return false;">
+            <div class="form-element form-stack">
+              <label for="userid-login" class="form-label">Id</label>
+              <input id="userid-login" type="text" name="userid">
+            </div>
+            <div class="form-element form-stack">
+              <label for="password-login" class="form-label">Password</label>
+              <input id="password-login" type="password" name="password">
+            </div>
+            <div class="form-element form-submit">
+              <button id="logIn" class="login" type="submit" name="login">Log In</button>
+              <button id="goRight" class="login off" name="signup">Sign Up</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript" src="../../static/js/sign.js"></script>
+</body>
+</html>
