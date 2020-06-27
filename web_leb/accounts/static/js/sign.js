@@ -3,7 +3,7 @@
  *  Sign Up / Login       *
  * ====================== */
 $(document).ready(function(){
-  $('#goRight').on('click', function(){
+  $('#goRight').on('click', function(e){
     $('#slideBox').animate({
       'marginLeft' : '0'
     });
@@ -11,7 +11,7 @@ $(document).ready(function(){
       'marginLeft' : '100%'
     });
   });
-  $('#goLeft').on('click', function(){
+  $('#goLeft').on('click', function(e){
     if (window.innerWidth > 769){
       $('#slideBox').animate({
         'marginLeft' : '50%'

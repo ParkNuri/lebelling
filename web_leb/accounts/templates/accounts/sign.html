@@ -21,10 +21,19 @@
       <div class="left">
         <div class="content">
           <h2>Sign Up</h2>
-          <form id="form-signup" method="post" onsubmit="return false;">
+          <form id="form-signup" method="post" action="{% url 'accounts:signup' %}">
+            {% csrf_token %}
+            {% for field in signupform %}
             <div class="form-element form-stack">
-              <label for="userid-signup" class="form-label">Id</label>
-              <input id="userid-signup" type="text" name="userid">
+              {{ field.errors }}
+              {{ field.label_tag }} 
+              {{ field }}
+            </div>
+            {% endfor %}
+
+            <!-- <div class="form-element form-stack">
+              <label for="userid-signup" class="form-label">email</label>
+              <input id="userid-signup" type="email" name="userid" placeholder="email을 입력해주세요">
             </div>
             <div class="form-element form-stack">
               <label for="password-signup" class="form-label">Password</label>
@@ -35,8 +44,8 @@
               <input id="passwordcheck-signup" type="password" name="passwordcheck">
             </div>
             <div class="form-element form-stack">
-              <label for="username-signup" class="form-label">Username</label>
-              <input id="username-signup" type="text" name="username">
+              <label for="nickname-signup" class="form-label">Nickname</label>
+              <input id="nickname-signup" type="text" name="nickname">
             </div>
             <div class="form-element form-stack">
               <label for="phone" class="form-label">Phone</label>
@@ -47,17 +56,15 @@
               <input id="birthday" type="date" name="birthday">
             </div>
             <div class="form-element form-stack">
-              <label for="gender" class="form-label">Gender</label>
-              <div class="gender">
-                <label for="man">남자</label>
-                <input type="checkbox" name="gender" value="남자" id="man">
-                <label for="women">여자</label>
-                <input type="checkbox" name="gender" value="여자" id="women">
+              <label for="job" class="form-label">JOB</label>
+              <div class="job">
+                <label for="job">직업</label>
+                <input type="text" name="job" value="" id="job">
               </div>
-            </div>
+            </div> -->
             <div class="form-element form-submit">
-              <button id="signUp" class="signup" type="submit" name="signup">Sign up</button>
-              <button id="goLeft" class="signup off">Log In</button> 
+              <button id="signUp" class="button lb" type="submit" name="signup">Sign up</button>
+              <a id="goLeft" class="button lb">Log In</a> 
             </div>
           </form>
         </div>
@@ -65,9 +72,23 @@
       <div class="right">
         <div class="content">
           <h2>Login</h2>
-          <form id="form-login" method="post" onsubmit="return false;">
+          <form id="form-login" method="post" action="{% url 'accounts:login' %}" >
+            {% csrf_token %}
+            {% for field in loginform %}
             <div class="form-element form-stack">
-              <label for="userid-login" class="form-label">Id</label>
+              {{ field.errors }}
+              {{ field.label_tag }} 
+              {{ field }}
+            </div>
+            {% endfor %}
+            <div class="form-element form-submit">
+              <button id="login" class="button rb" type="submit" name="login">Login</button>
+              <a id="goRight" class="button rb" name="signup">Sign Up</a>
+            </div>
+          </form>
+          <!-- <form id="form-login" method="post" onsubmit="return false;" action="{% url 'accounts:login' %}">
+            <div class="form-element form-stack">
+              <label for="userid-login" class="form-label">email</label>
               <input id="userid-login" type="text" name="userid">
             </div>
             <div class="form-element form-stack">
@@ -78,7 +99,7 @@
               <button id="logIn" class="login" type="submit" name="login">Log In</button>
               <button id="goRight" class="login off" name="signup">Sign Up</button>
             </div>
-          </form>
+          </form> -->
         </div>
       </div>
     </div>

@@ -15,13 +15,15 @@ def signup(request):
         if form.is_valid():
             user = form.save()
             auth_login(request, user)
-            return redirect('mainpage:index')
+            return redirect('accounts:login')
     else:
-        form = CustomUserCreationForm()
+        signupform = CustomUserCreationForm()
+        loginform = AuthenticationForm()
     context = {
-        'form': form
+        'signupform': signupform,
+        'loginform' : loginform
     }
-    return render(request, 'accounts/signup.html', context)
+    return render(request, 'accounts/sign.html', context)
 
 def login(request):
     if request.user.is_authenticated:
@@ -32,15 +34,17 @@ def login(request):
             auth_login(request, form.get_user())
             return redirect(request.GET.get('next') or 'mainpage:index')
     else:
-        form = AuthenticationForm()
+        signupform = CustomUserCreationForm()
+        loginform = AuthenticationForm()
     context = {
-        'form': form
+        'signupform': signupform,
+        'loginform' : loginform
     }
-    return render(request, 'accounts/login.html', context)
+    return render(request, 'accounts/sign.html', context)
 
 def logout(request):
     auth_logout(request)
-    return redirect('mainpage:index')
+    return redirect('accounts:login')
 
 @require_POST
 def delete(request):
@@ -66,7 +70,7 @@ def change_password(request):
         if form.is_valid():
             user = form.save()
             update_session_auth_hash(request, user)
-            return redirect('mainpage:index')
+            return redirect('accounts:login')
     else:
         form = PasswordChangeForm(request.user)
     context = {
