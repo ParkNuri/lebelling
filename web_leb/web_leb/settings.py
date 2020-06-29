@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'django_extensions',
+    'taging',
     'mainpage',
     'accounts',
     'django.contrib.admin',

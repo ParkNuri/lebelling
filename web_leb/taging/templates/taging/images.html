@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>drawrects</title>
+    <style>
+        canvas {
+             border:5px solid magenta;
+             background-image: url(https://placeimg.com/600/400/any);
+         }
+    </style>
+</head>
+<body>
+    <div id="container">
+            <canvas id="canvas" width="600" height="400"  style="display: inline-block;">
+                이 브라우저는 캔버스를 지원하지 않습니다.
+            </canvas>
+            <form action="" method="POST" id="inputform" style="display: inline-block;">
+                <input id="firstTag" type="text">
+                <p>
+                    <button type="button" id="add-tag">태그 추가</button>
+                    <button type="submit">제출</button>
+                </p>
+            </form>
+    </div>
+    <script>
+        const btnAddTag = document.querySelector('#add-tag')
+        btnAddTag.addEventListener('click', function(event) {
+            const inputform  = document.querySelector('#inputform')
+            const inputTag = document.createElement('input')
+            inputTag.type="text"
+            const pTag = document.createElement('p')
+            const firstTag =  document.querySelector('#firstTag')
+            
+            firstTag.append(pTag)
+            pTag.appendChild(inputTag)
+        })
+    </script>
+</body>
+</html>

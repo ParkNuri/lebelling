@@ -11,9 +11,10 @@ def signup(request):
     if request.user.is_authenticated:
         return redirect('mainpage:index')
     if request.method == 'POST':
-        form = CustomUserCreationForm(request.POST)
-        if form.is_valid():
-            user = form.save()
+        signupform = CustomUserCreationForm(request.POST)
+        loginform = AuthenticationForm()
+        if signupform.is_valid():
+            user = signupform.save()
             auth_login(request, user)
             return redirect('accounts:login')
     else:
