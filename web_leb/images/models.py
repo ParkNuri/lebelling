@@ -3,7 +3,7 @@ from django.db.models import constraints
 from django.conf import settings
 from imagekit.models import ImageSpecField
 from imagekit.processors import Thumbnail
-from accounts import User
+from accounts.models import User
 
 # Create your models here.
 # user.pk => company name??
@@ -14,7 +14,7 @@ class Image(models.Model):
     image = models.ImageField(blank=True, upload_to=articles_image_path)
     image_thumbnail = ImageSpecField(
         source='image',
-        processors=[Thumbnail(200, 300)],
+        processors=[Thumbnail(800, 600)],
         format='JPEG',
         options={'quality':90}
     )
@@ -25,10 +25,10 @@ class Image(models.Model):
     #filename = models.CharField(max_length=150)
 
 class Box(models.Model):
-    #좌측 하단 x,y ? 
+    #좌측 상단 x,y ? 
     leftbotx = models.PositiveSmallIntegerField()
     leftboty = models.PositiveSmallIntegerField()
-    #우측 상단 x,y ?
+    #우측 하단 x,y ?
     righttopx = models.PositiveSmallIntegerField()
     righttopy = models.PositiveSmallIntegerField()
     # 1:M 구조

@@ -31,9 +31,12 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'bootstrap4',
     'django_extensions',
+    'boxing',
     'mainpage',
     'accounts',
+    'images',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -121,5 +124,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+MEDIA_URL = '/media/' # 이미지 불러오는 경로
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media') # 이미지 저장 경로
 
 AUTH_USER_MODEL = 'accounts.User'
