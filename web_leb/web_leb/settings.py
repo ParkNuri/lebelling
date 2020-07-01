@@ -32,7 +32,9 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'random_image_from_folder',
+    'bootstrap4',
     'django_extensions',
+    'boxing',
     'taging',
     'mainpage',
     'accounts',
@@ -124,6 +126,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+MEDIA_URL = '/media/' # 이미지 불러오는 경로
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media') # 이미지 저장 경로
 
 # STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
 

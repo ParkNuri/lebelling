@@ -14,7 +14,7 @@ class Image(models.Model):
     image = models.ImageField(blank=True, upload_to=articles_image_path)
     image_thumbnail = ImageSpecField(
         source='image',
-        processors=[Thumbnail(200, 300)],
+        processors=[Thumbnail(800, 600)],
         format='JPEG',
         options={'quality':90}
     )
@@ -26,11 +26,11 @@ class Image(models.Model):
 
 class Box(models.Model):
     #좌측 상단 x,y ? 
-    lefttopx = models.PositiveSmallIntegerField()
-    lefttopy = models.PositiveSmallIntegerField()
+    leftbotx = models.PositiveSmallIntegerField()
+    leftboty = models.PositiveSmallIntegerField()
     #우측 하단 x,y ?
-    rightbotx = models.PositiveSmallIntegerField()
-    rightboty = models.PositiveSmallIntegerField()
+    righttopx = models.PositiveSmallIntegerField()
+    righttopy = models.PositiveSmallIntegerField()
     # 1:M 구조
     #source_img = models.ForeignKey(Image, on_delete=models.CASCADE)
     #maker_userid = models.ForeignKey(User.username, on_delete=models.CASCADE)
