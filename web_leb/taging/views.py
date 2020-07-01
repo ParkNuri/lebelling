@@ -3,6 +3,7 @@ import os
 import random
 from django import template
 from django.conf import settings
+from images import models as imagemodels
 
 
 # Create your views here.
@@ -15,6 +16,10 @@ def images(request):
         for i in range(1,datalen):
             print(datalist[i])
     return render(request, 'taging/images.html')
+
+def test(request):
+
+    return render(request, 'taging/test.html')
 
 
 # def random_image():
