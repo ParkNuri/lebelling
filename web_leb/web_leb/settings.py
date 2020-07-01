@@ -31,10 +31,12 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'random_image_from_folder',
     'django_extensions',
     'taging',
     'mainpage',
     'accounts',
+    'images',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -123,4 +125,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+# STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
+
 AUTH_USER_MODEL = 'accounts.User'
+
+RANDOM_IMAGE_DIR = 'images/static/images/'

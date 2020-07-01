@@ -3,7 +3,7 @@ from django.db.models import constraints
 from django.conf import settings
 from imagekit.models import ImageSpecField
 from imagekit.processors import Thumbnail
-from accounts import User
+from accounts.models import User
 
 # Create your models here.
 # user.pk => company name??
