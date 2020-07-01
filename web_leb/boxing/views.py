@@ -14,7 +14,7 @@ def non_tag(request):
     images = Image.objects.all()
     image = random.choice(images)
     print("*"*50)
-    print(image)
+    print(images)
     print("*"*50)
     context = {
         'image' : image
@@ -26,7 +26,7 @@ def save_position(request):
 
 def img(request):
     if request.method == "POST":
-        form = ImgForm(request.FILES)
+        form = ImgForm(files=request.FILES)
         if form.is_valid():
             image = form.save(commit=False)
             image.status = 0
