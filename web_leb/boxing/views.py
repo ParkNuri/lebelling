@@ -19,20 +19,19 @@ def non_tag(request):
     return render(request, 'boxing/nontag.html', context)
 
 def save_position(request, image_pk):
-    # image = get_object_or_404(Image, pk=image_pk)
+    image = get_object_or_404(Image, pk=image_pk)
     # positionList = request.POST
     # form = BoxForm(request.POST)
     # if request.method == "POST":
     #     box = form.save(commit=False)
     # print(request.POST)
     positions = request.POST.get('position').split(',')
-    print(type(positions))
     for position in positions:
-        print(position)
-        form = BoxForm()
         strs = position.split('/')
-        saveBox = Box.objects.create(lefttopx=strs[0], lefttopy=strs[1], rightbotx=strs[2], rightboty=strs[3])
-        ImageUserTagBox.objects.create(image=image_pk, user=request.user.pk, box=saveBox.pk, point=0)
+        print(int(round(float(strs[2]))))
+
+        saveBox = Box.objects.create(lefttopx=strs[0], lefttopy=int(round(float(strs[1]))), rightbotx=strs[2], rightboty=int(round(float(strs[3]))))
+        ImageUserTagBox.objects.create(image=image, user=request.user, box=saveBox)
 
     return redirect('boxing:nontag')
 

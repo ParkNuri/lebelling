@@ -12,7 +12,7 @@ body {
   right: 0;
   width: 50%;
   height: 100%;
-  background: #CCB69B;
+  background: #f4035f;
   background-image: url(../logo1.png);
   background-position: center;
   background-size: 500px, 1000px;
@@ -91,12 +91,12 @@ input {
   color: #e3e3e3;
 }
 .left input {
-  border-bottom: 1px solid #e3e3e3;
-  color: #e3e3e3;
+  border-bottom: 1px solid #CCB69B;
+  color: #CCB69B;
 }
 .left input:focus, .left input:active {
-  border-color: #03A9F4;
-  color: #03A9F4;
+  border-color: #CCB69B;
+  color: #CCB69B;
 }
 .left input:-webkit-autofill {
   -webkit-box-shadow: 0 0 0 30px #2C3034 inset;

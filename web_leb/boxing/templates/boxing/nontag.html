@@ -33,8 +33,7 @@
       </select>
       <!-- <input type="button" id="clear" value="모두 지움"/> -->
       <input type="button" id="clearone" value="마지막 지움"/>
-      <div id="Plist">
-        <p>좌표 리스트</p>
+      <div>
         <form action="" method="POST" id="submit">
             {% csrf_token %}
             <!-- <input type="hidden" name="position" value="arrPosition"> -->
@@ -167,18 +166,6 @@
             }
             drawing = false;
             moving = -1;
-            
-              const pTag = document.createElement('p')
-              pTag.innerText = arrPosition[arrPosition.length-1]
-              const Plist = document.querySelector('#Plist')
-              Plist.append(pTag)
-            //   axios.post('/boxing/{{image.pk}}/')
-            //       .then(data => {
-            //             console.log(data)
-            //       })
-              // for(i=0; i<arrPosition.length; i++){
-              //     alert(arrPosition[i]);
-              // }
 
         }            
 
