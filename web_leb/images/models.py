@@ -26,11 +26,11 @@ class Image(models.Model):
 
 class Box(models.Model):
     #좌측 상단 x,y ? 
-    leftbotx = models.PositiveSmallIntegerField()
-    leftboty = models.PositiveSmallIntegerField()
+    lefttopx = models.PositiveSmallIntegerField()
+    lefttopy = models.PositiveSmallIntegerField()
     #우측 하단 x,y ?
-    righttopx = models.PositiveSmallIntegerField()
-    righttopy = models.PositiveSmallIntegerField()
+    rightbotx = models.PositiveSmallIntegerField()
+    rightboty = models.PositiveSmallIntegerField()
     # 1:M 구조
     #source_img = models.ForeignKey(Image, on_delete=models.CASCADE)
     #maker_userid = models.ForeignKey(User.username, on_delete=models.CASCADE)

@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import ImgForm
-from images.models import Image
+from .forms import ImgForm, BoxForm
+from images.models import Image, Box, ImageUserTagBox
 import random
 
 # Create your views here.
@@ -13,18 +13,30 @@ def tag(request):
 def non_tag(request):
     images = Image.objects.all()
     image = random.choice(images)
-    print("*"*50)
-    print(images)
-    print("*"*50)
     context = {
         'image' : image
     }
     return render(request, 'boxing/nontag.html', context)
 
-def save_position(request):
-    return redirect('boxing:non_tag')
+def save_position(request, image_pk):
+    # image = get_object_or_404(Image, pk=image_pk)
+    # positionList = request.POST
+    # form = BoxForm(request.POST)
+    # if request.method == "POST":
+    #     box = form.save(commit=False)
+    # print(request.POST)
+    positions = request.POST.get('position').split(',')
+    print(type(positions))
+    for position in positions:
+        print(position)
+        form = BoxForm()
+        strs = position.split('/')
+        saveBox = Box.objects.create(lefttopx=strs[0], lefttopy=strs[1], rightbotx=strs[2], rightboty=strs[3])
+        ImageUserTagBox.objects.create(image=image_pk, user=request.user.pk, box=saveBox.pk, point=0)
 
-def img(request):
+    return redirect('boxing:nontag')
+
+def save_img(request):
     if request.method == "POST":
         form = ImgForm(files=request.FILES)
         if form.is_valid():

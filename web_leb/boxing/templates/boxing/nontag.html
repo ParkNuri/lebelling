@@ -8,9 +8,15 @@
   <style>
     #canvas {
          border:5px solid magenta;
+         background-image: url("{{ image.image_thumbnail.url }}");
+         background-position: center;
+         background-repeat: no-repeat;
+         background-size: contain;
      }
   </style>
   <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
 </head>
 <body>
   <h1>태그 안된 곳</h1>
@@ -29,12 +35,17 @@
       <input type="button" id="clearone" value="마지막 지움"/>
       <div id="Plist">
         <p>좌표 리스트</p>
-        <input id="btnfinish" type="button" value="제출">
+        <form action="" method="POST" id="submit">
+            {% csrf_token %}
+            <!-- <input type="hidden" name="position" value="arrPosition"> -->
+            <input id="btnfinish" type="submit" value="제출">
+        </form>
       </div>
   </div>
 </div>
   
-  <script>
+<script>
+
   var canvas;
   var ctx;
   var arRectangle = new Array();
@@ -83,9 +94,10 @@
         ctx.lineWidth = 2;
         color = "rgba(255, 255, 0, 0.5)"
         ctx.fillStyle = color;
-        var image = new Image();
-        image.src = "{{ image.image_thumbnail.url }}"
-        ctx.drawImage(image,0,0);
+      //   var img = new Image();
+      //   img.src = "{{ image.image_thumbnail.url }}"
+        
+      //   ctx.drawImage(img,0,0);
         
 
         canvas.onmousedown = function(e) {
@@ -151,16 +163,19 @@
                   var x2 = Math.max(sx, ex);
                   var y2 = Math.max(sy, ey);
                   arRectangle.push(new Rectangle(x1, y1, x2, y2,color));
-                  arrPosition.push('좌상좌표 : '+ x1+','+y1 + ' 우하좌표 : '+ x2+','+y2);
+                  arrPosition.push(x1+'/'+y1 +'/'+x2+'/'+y2);
             }
             drawing = false;
             moving = -1;
             
-              // arrPosition.push('좌하좌표 : '+ x1+','+y1 + ' 우상좌표 : '+ x2+','+y2);
               const pTag = document.createElement('p')
               pTag.innerText = arrPosition[arrPosition.length-1]
               const Plist = document.querySelector('#Plist')
               Plist.append(pTag)
+            //   axios.post('/boxing/{{image.pk}}/')
+            //       .then(data => {
+            //             console.log(data)
+            //       })
               // for(i=0; i<arrPosition.length; i++){
               //     alert(arrPosition[i]);
               // }
@@ -202,11 +217,7 @@
 
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         arRectangle.length = 0;
-        arrPosition.length = 0;
-
-        // document.getElementById('canvas').style.backgroundImage = "url(https://placeimg.com/600/400/any)";
-        // document.getElementById('canvas').style.backgroundRepeat = "no-repeat";
-        // document.getElementById('canvas').style.backgroundPosition = "center";
+      //   arrPosition.length = 0;
 
   }
 
@@ -229,6 +240,19 @@
 
   }
 
+  document.querySelector('#submit').addEventListener('submit', function(event) {
+        event.preventDefault()
+        console.log(arrPosition)
+        const data = new FormData()
+        data.append('position', arrPosition)
+        console.log(data)
+        axios.defaults.xsrfCookieName = 'csrftoken';
+        axios.defaults.xsrfHeaderName = 'X-CSRFToken';
+        axios.post('/boxing/save_position/{{ image.pk }}/', data)
+            .then(data => {
+                  console.log(data)
+            })
+  })
   </script>
 </body>
 </html>
