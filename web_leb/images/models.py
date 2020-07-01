@@ -51,7 +51,7 @@ class ImageUserTagBox(models.Model):
     user = models.ForeignKey(User, on_delete=models.SET_DEFAULT, default='DELETED_ACCOUNT')
     tag = models.ForeignKey(Tag, on_delete=models.CASCADE, null=True)
     box = models.ForeignKey(Box, on_delete=models.CASCADE, null=True)
-    point = models.IntegerField()
+    point = models.IntegerField(default=0)
     class Meta:
         constraints = [
             #한 명의 사람은 한 개의 이미지에 같은 태그를 하나만 달 수 있도록
