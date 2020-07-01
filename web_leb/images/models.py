@@ -7,11 +7,11 @@ from accounts.models import User
 
 # Create your models here.
 # user.pk => company name??
-def articles_image_path(instance, filename):
-    return f'user_{instance.user.pk}/{filename}'
+# def articles_image_path(instance, filename):
+#     return f'user_{instance.user.pk}/{filename}'
 
 class Image(models.Model):
-    image = models.ImageField(blank=True, upload_to=articles_image_path)
+    image = models.ImageField(blank=True)
     image_thumbnail = ImageSpecField(
         source='image',
         processors=[Thumbnail(800, 600)],
