@@ -39,16 +39,18 @@
             <div class="col-sm-9 left-side">
                 <!-- <img src="https://placeimg.com/600/400/any" alt=""> -->
                 <!-- <img src="{% static 'images/any1.jpg' %}" alt=""> -->
-                <img src="{% static 'images/' %}{% random_image %}">
+                <!-- <img src="{% static 'images/' %}{% random_image %}"> -->
+                <img src="{{ image }}" alt="">
                 <!-- <canvas id="canvas">
                     이 브라우저는 캔버스를 지원하지 않습니다.
                 </canvas> -->
             </div>
             <div class="col-sm-3 right-side">
-                <form action="" method="POST" id="inputform" style="display: inline-block;">
+                <form action="{% url 'taging:addtag' image_pk %}" method="POST" id="inputform" style="display: inline-block;">
                     {% csrf_token %}
                     <p style="margin-top: 1rem;">
-                        <input id="tag-input-1" type="text" name="tag1" required>
+                        <!-- <input id="tag-input-1" type="text" name="tag1" required> -->
+                        <input id="tag-input-1" type="text" name="tag" required>
                         <a id="deltag1" value="tag1">삭제</a>
                     </p>
                     <p class="p-button">
@@ -76,7 +78,8 @@
                 inputTag.type="text"
                 inputTag.required = true
                 inputTag.id='tag-input-'+(cnt+1)
-                inputTag.name="tag"+(cnt+1)
+                inputTag.name="tag"
+                // inputTag.name="tag"+(cnt+1)
 
                 const delTag = document.createElement('a')
                 delTag.innerHTML = ' 삭제'
