@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'bootstrap4',
     'django_extensions',
     'boxing',
+    'taging',
     'mainpage',
     'accounts',
     'images',

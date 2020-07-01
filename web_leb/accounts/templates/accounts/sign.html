@@ -62,9 +62,9 @@
                 <input type="text" name="job" value="" id="job">
               </div>
             </div> -->
-            <div class="form-element form-submit">
+            <div class="form-element form-submit" style="position: relative;">
               <button id="signUp" class="button lb" type="submit" name="signup">Sign up</button>
-              <a id="goLeft" class="button lb">Log In</a> 
+              <a id="goLeft" class="button lb" style="position: absolute;">Log In</a> 
             </div>
           </form>
         </div>
@@ -81,9 +81,9 @@
               {{ field }}
             </div>
             {% endfor %}
-            <div class="form-element form-submit">
+            <div class="form-element form-submit" style="position: relative;">
               <button id="login" class="button rb" type="submit" name="login">Login</button>
-              <a id="goRight" class="button rb" name="signup">Sign Up</a>
+              <a id="goRight" class="button rb" name="signup" style="position: absolute;">Sign Up</a>
             </div>
           </form>
           <!-- <form id="form-login" method="post" onsubmit="return false;" action="{% url 'accounts:login' %}">
