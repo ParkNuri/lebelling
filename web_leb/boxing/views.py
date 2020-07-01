@@ -13,6 +13,9 @@ def tag(request):
 def non_tag(request):
     images = Image.objects.all()
     image = random.choice(images)
+    print("*"*50)
+    print(image)
+    print("*"*50)
     context = {
         'image' : image
     }
