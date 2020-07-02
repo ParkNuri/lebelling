@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     'accounts',
     'images',
     'imagekit',
-    'django_static_md5url',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
