@@ -9,8 +9,12 @@ def boxing(request):
 
 def tag(request):
     imgcount = Image.objects.all().count()
-    imgnum = random.randint(1,imgcount)
-    image = Image.objects.get(pk=imgnum)
+    try:
+        imgnum = random.randint(1,imgcount)
+        image = Image.objects.get(pk=imgnum)
+    except:
+        imgnum = random.randint(3,imgcount)
+        image = Image.objects.get(pk=imgnum)
     tags = ImageUserTagBox.objects.filter(image_id=imgnum).filter(tag_id__gte=1)
     taglist = []
     for tag in tags:

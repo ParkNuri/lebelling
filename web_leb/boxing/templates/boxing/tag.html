@@ -38,10 +38,12 @@
         <tbody>
           <tr>
             <th>태그 명</th>
+            <th>박스 색상 및 좌표</th>
           </tr>
           {% for tag in taglist %}
             <tr>
               <td class="tag">{{ tag }}</td>
+              <td class="colorxy" id="{{tag}}"></td>
             </tr>
           {% endfor %}
         </tbody>
@@ -56,7 +58,29 @@
 </div>
   
 <script>
-
+  // -------------------------------------------------------------
+  // -------------------------------------------------------------
+  let thisbox
+  let cnt = 0
+  const tags = document.querySelectorAll('.tag')
+  tags.forEach(element => {
+    element.addEventListener('click',function(event){
+      thistxt = this.innerText
+      thisbox = document.querySelector('#'+thistxt)
+    })
+  });
+  
+  const colorlist = ['red','orange','yellow','green','blue','indigo','purple']
+  let i = 0
+  tags.forEach(element => {
+    thisbox = element.innerText
+    const colorbox = document.querySelector('#'+thisbox)
+    colorbox.style.cssText = "border: 1px solid "+colorlist[i];
+    i = i+1 
+  })
+  // -------------------------------------------------------------
+  // -------------------------------------------------------------
+  
   var canvas;
   var ctx;
   var arRectangle = new Array();
@@ -178,6 +202,7 @@
                   var y2 = Math.max(sy, ey);
                   arRectangle.push(new Rectangle(x1, y1, x2, y2,color));
                   arrPosition.push(x1+'/'+y1 +'/'+x2+'/'+y2);
+                  thisbox.innerText = x1+'/'+y1 +'/'+x2+'/'+y2
             }
             drawing = false;
             moving = -1;
@@ -185,10 +210,6 @@
         }
 
   }
-
-  taglist[0].addEventListener('click', function(){
-    
-  })
 
   var selcolor = document.getElementById("selcolor");
   selcolor.onchange = function(e) {
