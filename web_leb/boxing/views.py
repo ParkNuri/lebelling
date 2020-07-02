@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import ImgForm, BoxForm
-from images.models import Image, Box, ImageUserTagBox
+from images.models import Image, Box, Tag, ImageUserTagBox
 import random
 
 # Create your views here.
@@ -8,7 +8,20 @@ def boxing(request):
     return render(request, 'boxing/index.html')
 
 def tag(request):
-    return render(request, 'boxing/tag.html')
+    imgcount = Image.objects.all().count()
+    imgnum = random.randint(1,imgcount)
+    image = Image.objects.get(pk=imgnum)
+    tags = ImageUserTagBox.objects.filter(image_id=imgnum).filter(tag_id__gte=1)
+    taglist = []
+    for tag in tags:
+        tagname = Tag.objects.get(pk=tag.tag_id).name
+        taglist.append(tagname)
+    context = {
+        'image' : image,
+        'taglist' : taglist
+    }
+
+    return render(request, 'boxing/tag.html', context)
 
 def non_tag(request):
     images = Image.objects.all()
