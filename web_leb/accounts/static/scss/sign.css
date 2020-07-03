@@ -111,6 +111,10 @@ input {
   color: #CCB69B !important;
 }
 
+.right button{
+  color: #6610f2 !important;
+}
+
 .right {
   width: 50%;
   height: 100%;
@@ -144,17 +148,17 @@ input {
   position: relative;
 }
 
-.content h2 {
-  font-weight: 300;
-  font-size: 2.6em;
+.content h1 {
+  font-weight: 10;
+  font-size: 5.2em;
   margin: 0.2em 0 0.1em;
 }
 
-.left .content h2 {
+.left .content h1 {
   color: #CCB69B;
 }
 
-.right .content h2 {
+.right .content h1 {
   color: #673AB7;
 }
 
@@ -168,6 +172,7 @@ input {
 .form-stack {
   display: flex;
   flex-direction: column;
+  text-align: left;
 }
 
 .checkbox {
