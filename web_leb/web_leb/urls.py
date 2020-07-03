@@ -24,4 +24,5 @@ urlpatterns = [
     path('mainpage/', include('mainpage.urls')),
     path('boxing/', include('boxing.urls')),
     path('taging/', include('taging.urls')),
+    path('ranking/', include('ranking.urls')),
 ]  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
