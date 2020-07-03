@@ -1,13 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../../static/scss/sign.css">
-  <script src="https://code.jquery.com/jquery-2.2.1.js"></script>
-  <title>SignUp</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% load static %}
+{% block head%}
+<link rel="stylesheet" href="../../static/scss/sign.css">
+<script src="https://code.jquery.com/jquery-2.2.1.js"></script>
+{% endblock %}
+{% block body%}
   <div id="back">
     <canvas id="canvas" class="canvas-back"></canvas>
     <div class="backRight">    
@@ -20,7 +17,7 @@
       
       <div class="left">
         <div class="content">
-          <h2>Sign Up</h2>
+          <h2 class="retro">싸-인 업</h2>
           <form id="form-signup" method="post" action="{% url 'accounts:signup' %}">
             {% csrf_token %}
             {% for field in signupform %}
@@ -31,8 +28,8 @@
             </div>
             {% endfor %}
             <div class="form-element form-submit" style="position: relative;">
-              <button id="signUp" class="button lb" type="submit" name="signup">Sign up</button>
-              <a id="goLeft" class="button lb" style="position: absolute;">Log In</a> 
+              <button id="signUp" class="button lb retro small" type="submit" name="signup">컨-펌</button>
+              <a id="goLeft" class="button lb retro small" style="position: absolute;">Log In</a> 
             </div>
           </form>
         </div>
@@ -40,7 +37,7 @@
       
       <div class="right">
         <div class="content">
-          <h2>Login</h2>
+          <h2>인증하기</h2>
           <form id="form-login" method="post" action="{% url 'accounts:login' %}" >
             {% csrf_token %}
             {% for field in loginform %}
@@ -51,8 +48,8 @@
             </div>
             {% endfor %}
             <div class="form-element form-submit" style="position: relative;">
-              <button id="login" class="button rb" type="submit" name="login">Login</button>
-              <a id="goRight" class="button rb" name="signup" style="position: absolute;">Sign Up</a>
+              <button id="login" class="button rb retro small" type="submit" name="login">Login</button>
+              <a id="goRight" class="button rb retro small" name="signup" style="position: absolute;">Sign Up</a>
             </div>
           </form>
         </div>
@@ -61,5 +58,4 @@
     </div>
   </div>
   <script type="text/javascript" src="../../static/js/sign.js"></script>
-</body>
-</html>
+  {% endblock %}

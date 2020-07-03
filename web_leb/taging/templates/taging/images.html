@@ -1,11 +1,16 @@
+{% extends 'base.html' %}
 {% load static %}
-{% load random_image %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <title>drawrects</title>
+{% block head %}
     <style>
+        body {
+            background-color: #0f0f1c !important
+        }
+        .container {
+            width: 100%;
+            height: 100%;
+            padding: 0 3em;
+            background: #0f0f1c;
+        }
         img {
              border:5px solid #673AB7;
              width : 600px;
@@ -18,7 +23,7 @@
              bottom: 1rem;
          }
          .row {
-            background-color: #673AB7;
+            /* background-color: #673AB7; */
          }
          #add-tag {
              margin-right: 10px;
@@ -31,31 +36,28 @@
          }
     </style>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-
-</head>
-<body>
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-9 left-side">
-                <img src="{{ image }}" alt="">
-                <!-- <canvas id="canvas">
-                    이 브라우저는 캔버스를 지원하지 않습니다.
-                </canvas> -->
-            </div>
-            <div class="col-sm-3 right-side">
-                <form action="{% url 'taging:addtag' image_pk %}" method="POST" id="inputform" style="display: inline-block;">
-                    {% csrf_token %}
-                    <p style="margin-top: 1rem;">
-                        <!-- <input id="tag-input-1" type="text" name="tag1" required> -->
-                        <input id="tag-input-1" type="text" name="tag" required>
-                        <a id="deltag1" value="tag1">삭제</a>
-                    </p>
-                    <p class="p-button">
-                        <button type="button" id="add-tag">태그 추가</button>
-                        <button type="submit">제출</button>
-                    </p>
-                </form>
-            </div>
+{% endblock %}
+{% block containerbody %}
+    <div class="row">
+        <div class="col-sm-9 left-side">
+            <img src="{{ image }}" alt="">
+            <!-- <canvas id="canvas">
+                이 브라우저는 캔버스를 지원하지 않습니다.
+            </canvas> -->
+        </div>
+        <div class="col-sm-3 right-side">
+            <form action="{% url 'taging:addtag' image_pk %}" method="POST" id="inputform" style="display: inline-block;">
+                {% csrf_token %}
+                <p style="margin-top: 1rem;">
+                    <!-- <input id="tag-input-1" type="text" name="tag1" required> -->
+                    <input id="tag-input-1" type="text" name="tag" required>
+                    <a id="deltag1" value="tag1">삭제</a>
+                </p>
+                <p class="p-button">
+                    <button type="button" id="add-tag">태그 추가</button>
+                    <button type="submit">제출</button>
+                </p>
+            </form>
         </div>
     </div>
     <script>
@@ -97,5 +99,4 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-</body>
-</html>
+{% endblock %}

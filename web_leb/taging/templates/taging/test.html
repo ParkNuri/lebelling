@@ -7,6 +7,11 @@
 </head>
 <body>
     <img src="{{ image }}" alt="">
+    {% for tag in tags %}
+        <h1>{{tag.pk}}</h1>
+        <p>{{ tag.name }}</p>
+        <p>{{ tag.tag_count }}</p>
+    {% endfor %}
     
 </body>
 </html>
