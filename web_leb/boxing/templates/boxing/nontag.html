@@ -1,41 +1,44 @@
+{% extends 'base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% block head %}
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <style>
     #canvas {
-         border:5px solid magenta;
          background-image: url("{{ image.image_thumbnail.url }}");
          background-position: center;
          background-repeat: no-repeat;
          background-size: contain;
      }
+     h1{
+           text-align: center;
+     }
   </style>
   <title>Document</title>
-</head>
-<body>
-  <h1>태그 안된 곳</h1>
+{% endblock %}
+{% block containerbody %}
+  <h1 class="retro">박스!!</h1>
   <div style="display: inline-block;">
     <canvas id="canvas" width="800" height="600">
         이 브라우저는 캔버스를 지원하지 않습니다.
     </canvas>
-    <div style="float: right;">
-      색상 : <select id="selcolor">
-          <option value="rgba(255,255,0,0.6)">노랑</option>
-          <option value="rgba(255,0,0,0.3)">빨강</option>
-          <option value="rgb(0,255,0)">초록</option>
-          <option value="rgba(0,0,255,0.5)">파랑</option>
-      </select>
-      <!-- <input type="button" id="clear" value="모두 지움"/> -->
-      <input type="button" id="clearone" value="마지막 지움"/>
+    <div style="float: right; width: 250px; height: 400px; margin-left: 40px;">
+      <div class="row" style="width: 300px;">
+            <label for="selcolor">색상 : </label>
+            <select id="selcolor" style="width: 50%; height: 50px; margin-top: 50px;">
+            <option value="rgba(255,255,0,0.6)">노랑</option>
+            <option value="rgba(255,0,0,0.3)">빨강</option>
+            <option value="rgb(0,255,0)">초록</option>
+            <option value="rgba(0,0,255,0.5)">파랑</option>
+            </select>
+      </div>
+      <div  style="width: 80%; display: inline-block; margin-top: 90px;">
+            <div style="width: 50px; height: 80px; background-color: rgb(238, 245, 142); float: left;border-radius: 30px 0px 0px 30px;"></div>
+            <div style=" float: left;"><input class="retro" type="button" id="clearone" value="지우개" style="width: auto; height: 80px; font-size: 40pt;"/></div>   
+      </div>
       <div>
         <form action="" method="POST" id="submit">
             {% csrf_token %}
-            <!-- <input type="hidden" name="position" value="arrPosition"> -->
-            <input id="btnfinish" type="submit" value="제출">
+            <input class="retro" id="btnfinish" type="submit" value="ㄱㄱ" style="width: 80%; height: 80px; font-size: 40pt; margin-top: 90px;">
         </form>
       </div>
   </div>
@@ -235,5 +238,4 @@
             })
   })
   </script>
-</body>
-</html>
+{% endblock %}

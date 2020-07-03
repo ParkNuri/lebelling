@@ -14,7 +14,7 @@
          background-size: contain;
      }
      table {
-        width: 400px;
+        width: 300px;
       }
       th {
         width: 40%;
@@ -38,7 +38,7 @@
         <tbody>
           <tr>
             <th>태그 명</th>
-            <th>박스 색상 및 좌표</th>
+            <th>박스</th>
           </tr>
           {% for tag in taglist %}
             <tr>
@@ -203,7 +203,7 @@
                   var x2 = Math.max(sx, ex);
                   var y2 = Math.max(sy, ey);
                   arRectangle.push(new Rectangle(x1, y1, x2, y2,color));
-                  thisbox.innerText = x1+'/'+y1 +'/'+x2+'/'+y2
+                  thisbox.innerText = '완료'
                   TagPosition = TagPosition+x1+'/'+y1 +'/'+x2+'/'+y2
                   arrTagPosition.push(TagPosition)
                   TagPosition = ''
