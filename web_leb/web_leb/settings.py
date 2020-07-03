@@ -31,7 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'random_image_from_folder',
+    'ranking',
     'bootstrap4',
     'django_extensions',
     'boxing',
