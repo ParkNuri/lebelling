@@ -43,12 +43,24 @@
         #main-flexbox {
             margin-top: 1em;
         }
+
+        #text{
+            align-items: center;
+        }
+        #yellow{
+            color: yellow;
+        }
+
+        th {
+            color: antiquewhite;
+            align-items: center;
+        }
     </style>
 {% endblock %}
 {% block body%}
     <div id="main-flexbox">
         <div id="nav-bar-flexbox">
-            <h3 class="retro">LEBELING RANKING!</h3>
+            <h3 class="retro text">LEBELING RANKING!</h3>
         </div>
         <div id="content-flexbox">
             <div id="dummy-flexbox">
@@ -64,19 +76,26 @@
                 <tbody id="ranking-list">
                 </tbody>
             </table>
-            <div id="button-flexbox">
+            <!-- <div id="button-flexbox">
                 <a id="ranking-btn" class="btn btn-primary" role="button" href="/mainpage/index/">메인 페이지</a>
-            </div>
+            </div> -->
         </div>
     </div>
-    <table>
-    {% for user in ranking %}
-    <tr>
-        <th>{{ forloop.counter }}</th>
+
+    <div id="main-flexbox">
+        <div id="content-flexbox">
+            <div id="dummy-flexbox">
+            </div>
+            <table id="ranking-table" class="table">
+                {% for k,v in ranking.items %}
+                <tr>
+                    <th class="yellow">{{ forloop.counter }}</th>
+                    <th class="yellow">{{ k }}</th>
+                    <th class="yellow">{{ v }}</th>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
     
-        <th>{{ user }}</th>
-        <th>{{ user }}</th>
-    </tr>
-    {% endfor %}
-    </table>
 {% endblock %}

@@ -6,7 +6,7 @@ from django.conf import settings
 from images.models import Image, Tag, ImageUserTagBox
 from accounts.models import User
 from django.views.decorators.http import require_POST
-from django.db.models import Count
+from django.db.models import Count, Sum
 
 # Create your views here.
 def images(request):
@@ -49,7 +49,7 @@ def test(request):
     # delimage.delete()
     # print(delimage)
     image = Image.objects.order_by('?').first()
-    tags = image.tags.annotate(tag_count=Count('name')).order_by('-tag_count')
+    tags = image.tags.annotate(tag_count=Sum('name')).order_by('-tag_count')
     context = {
         'image' : image.image.url,
         'tags' : tags
