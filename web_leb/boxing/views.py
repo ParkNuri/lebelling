@@ -28,15 +28,14 @@ def tag(request):
     return render(request, 'boxing/tag.html', context)
 
 def non_tag(request):
-    images = Image.objects.all()
-    image = random.choice(images)
+    image = Image.objects.order_by('?').first()
     context = {
         'image' : image
     }
     return render(request, 'boxing/nontag.html', context)
 
 def save_position(request, image_pk):
-    image = get_object_or_404(Image, pk=image_pk)
+    saveImage = get_object_or_404(Image, pk=image_pk)
     # positionList = request.POST
     # form = BoxForm(request.POST)
     # if request.method == "POST":
@@ -45,12 +44,20 @@ def save_position(request, image_pk):
     positions = request.POST.get('position').split(',')
     for position in positions:
         strs = position.split('/')
-        print(int(round(float(strs[2]))))
-
         saveBox = Box.objects.create(lefttopx=strs[0], lefttopy=int(round(float(strs[1]))), rightbotx=strs[2], rightboty=int(round(float(strs[3]))))
-        ImageUserTagBox.objects.create(image=image, user=request.user, box=saveBox)
-
+        ImageUserTagBox.objects.create(image=saveImage, user=request.user, box=saveBox)
+    
     return redirect('boxing:nontag')
+
+def save_tag_position(request, image_pk):
+    saveImage = get_object_or_404(Image, pk=image_pk)
+    tagPositions = request.POST.get('tagposition').split(',')
+    for tagPosition in tagPositions:
+        strs = tagPosition.split('/')
+        saveTag = Tag.objects.get(name=strs[0])
+        saveBox = Box.objects.create(lefttopx=strs[1], lefttopy=int(round(float(strs[2]))), rightbotx=strs[3], rightboty=int(round(float(strs[4]))))
+        ImageUserTagBox.objects.create(image=saveImage, user=request.user, tag=saveTag, box=saveBox)
+    return redirect('boxing:tag')
 
 def save_img(request):
     if request.method == "POST":

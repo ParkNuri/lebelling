@@ -14,7 +14,7 @@
          background-size: contain;
      }
      table {
-        width: 500px;
+        width: 300px;
       }
       th {
         width: 40%;
@@ -38,7 +38,7 @@
         <tbody>
           <tr>
             <th>태그 명</th>
-            <th>박스 색상 및 좌표</th>
+            <th>박스</th>
           </tr>
           {% for tag in taglist %}
             <tr>
@@ -49,6 +49,7 @@
         </tbody>
       </table>
       <div>
+        <input type="button" id="clearone" value="상자 지우기"/>
         <form action="" method="POST" id="submit">
           {% csrf_token %}
           <input id="btnfinish" type="submit" value="제출">
@@ -62,22 +63,28 @@
   // -------------------------------------------------------------
   let thisbox
   let cnt = 0
+  let i = 0
+  const colorlist = ['red','orange','yellow','green','blue','indigo','purple']
   const tags = document.querySelectorAll('.tag')
   tags.forEach(element => {
+    element.style.cssText = "border: 1px solid "+colorlist[i];
     element.addEventListener('click',function(event){
       thistxt = this.innerText
       thisbox = document.querySelector('#'+thistxt)
+      color = event.target.style.borderColor
+      thisbox.innerText = '작성중';
+      TagPosition = thistxt+'/'
     })
+    i = i+1 
   });
   
-  const colorlist = ['red','orange','yellow','green','blue','indigo','purple']
-  let i = 0
-  tags.forEach(element => {
-    thisbox = element.innerText
-    const colorbox = document.querySelector('#'+thisbox)
-    colorbox.style.cssText = "border: 1px solid "+colorlist[i];
-    i = i+1 
-  })
+  // let i = 0
+  // tags.forEach(element => {
+  //   thisbox = element.innerText
+  //   const colorbox = document.querySelector('#'+thisbox)
+  //   colorbox.style.cssText = "border: 1px solid "+colorlist[i];
+  //   i = i+1 
+  // })
   // -------------------------------------------------------------
   // -------------------------------------------------------------
   
@@ -89,9 +96,8 @@
   var color;               // 현재 색상
   var drawing;                // 그리고 있는 중인가
   var moving = -1;              // 이동중인 도형 첨자
-  var arrPosition = new Array();
-
-  var taglist;
+  var arrTagPosition = new Array();
+  var TagPosition;
 
   // 사각형 생성자
   function Rectangle(sx, sy, ex, ey, color) {
@@ -130,12 +136,7 @@
         ctx = canvas.getContext("2d");
         ctx.strokeStyle = "black";
         ctx.lineWidth = 2;
-        color = "rgba(255, 255, 0, 0.5)"
         ctx.fillStyle = color;
-      //   var img = new Image();
-      //   img.src = "{{ image.image_thumbnail.url }}"
-        
-      //   ctx.drawImage(img,0,0);
         
 
         canvas.onmousedown = function(e) {
@@ -168,6 +169,7 @@
             if (drawing) {
                   drawRects();
                   ctx.fillStyle = color;
+                  ctx.globalAlpha = 0.3;
                   ctx.fillRect(sx, sy, ex-sx, ey-sy);
                   ctx.strokeRect(sx, sy, ex-sx, ey-sy);
             }
@@ -201,8 +203,10 @@
                   var x2 = Math.max(sx, ex);
                   var y2 = Math.max(sy, ey);
                   arRectangle.push(new Rectangle(x1, y1, x2, y2,color));
-                  arrPosition.push(x1+'/'+y1 +'/'+x2+'/'+y2);
-                  thisbox.innerText = x1+'/'+y1 +'/'+x2+'/'+y2
+                  thisbox.innerText = '완료'
+                  TagPosition = TagPosition+x1+'/'+y1 +'/'+x2+'/'+y2
+                  arrTagPosition.push(TagPosition)
+                  TagPosition = ''
             }
             drawing = false;
             moving = -1;
@@ -211,9 +215,18 @@
 
   }
 
-  var selcolor = document.getElementById("selcolor");
-  selcolor.onchange = function(e) {
-        color = selcolor.value;
+
+  var btnclearone = document.getElementById("clearone");
+
+  btnclearone.onclick = function(e) {
+
+        arRectangle.pop();
+        arrTagPosition.pop();
+        TagPosition = ''
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        drawRects();
+        thisbox.innerText = ""
+
   }
 
   var btnfinish = document.getElementById("btnfinish");
@@ -247,27 +260,17 @@
 
   document.querySelector('#submit').addEventListener('submit', function(event) {
         event.preventDefault()
-        console.log(arrPosition)
+        console.log(arrTagPosition)
         const data = new FormData()
-        data.append('position', arrPosition)
+        data.append('tagposition', arrTagPosition)
         console.log(data)
         axios.defaults.xsrfCookieName = 'csrftoken';
         axios.defaults.xsrfHeaderName = 'X-CSRFToken';
-        axios.post('/boxing/save_position/{{ image.pk }}/', data)
+        axios.post('/boxing/save_tag_position/{{ image.pk }}/', data)
             .then(data => {
                   console.log(data)
             })
   })
-
-  var taglist = document.querySelectorAll('.tag');
-        taglist[0].style.color = 'red';
-        taglist[1].style.color = 'orange';
-        taglist[2].style.color = 'yellow';
-        taglist[3].style.color = 'green';
-        taglist[4].style.color = 'blue';
-        taglist[5].style.color = 'indigo';
-        taglist[6].style.color = 'purple';
-  
   
   </script>
 </body>
