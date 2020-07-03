@@ -46,9 +46,9 @@ def validate_not_empty(value):
 
 class User(AbstractUser):
     #phone = PhoneNumberField(null=False, blank=False, unique=True)
-    phone = models.CharField(max_length=15, blank=False)
-    birth = models.DateField()
-    job = models.CharField(max_length=50)
+    phone = models.CharField(max_length=15, blank=True)
+    birth = models.DateField(null=True, blank=True)
+    job = models.CharField(max_length=50, blank=True)
     # objects = UserManager()
     REQUIRED_FIELDS = ['phone', 'birth', 'job']
 
