@@ -22,6 +22,7 @@ class Image(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     # 분석 (완료 / 진행) 등
     status = models.PositiveSmallIntegerField()
+    tags = models.ManyToManyField('Tag', through='ImageUserTagBox')
     #filename = models.CharField(max_length=150)
 
 class Box(models.Model):

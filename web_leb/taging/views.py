@@ -6,7 +6,7 @@ from django.conf import settings
 from images.models import Image, Tag, ImageUserTagBox
 from accounts.models import User
 from django.views.decorators.http import require_POST
-
+from django.db.models import Count
 
 # Create your views here.
 def images(request):
@@ -35,8 +35,10 @@ def addtag(request, image_pk):
     datalen = len(list(request.POST))
     datalist = request.POST.getlist('tag')
     for data in datalist:
-        tag = Tag.objects.filter(name=data)
-        if not tag.exists() :
+        try:
+            #tag = Tag.objects.filter(name=data)
+            tag = Tag.objects.get(name=data)
+        except:
             tag = Tag.objects.create(name=data)
         imagetag = ImageUserTagBox.objects.create(user=user,image=image,tag=tag)
 
@@ -46,27 +48,10 @@ def test(request):
     # delimage = Image.objects.filter(image='')
     # delimage.delete()
     # print(delimage)
-    allimage = Image.objects.all()
-    image = random.choice(list(allimage))
-    print(image.image)
-
+    image = Image.objects.order_by('?').first()
+    tags = image.tags.annotate(tag_count=Count('name')).order_by('-tag_count')
     context = {
-        'image' : image.image.url
+        'image' : image.image.url,
+        'tags' : tags
     }
-
     return render(request, 'taging/test.html', context)
-
-
-# def random_image():
-#     print('*****random_image()******')
-#     try:
-#         valid_extensions = settings.RANDOM_IMAGE_EXTENSIONS
-#     except AttributeError:
-#         valid_extensions = ['.jpg','.jpeg','.png','.gif',]
-
-#     rand_dir = os.path.join(settings.BASE_DIR, settings.RANDOM_IMAGE_DIR)
-#     print(rand_dir)
-#     print(os.listdir(rand_dir))
-#     files = [f for f in os.listdir(rand_dir) if os.path.splitext(f)[1] in valid_extensions]
-
-#     return "/static" + "/" + settings.RANDOM_IMAGE_DIR + "/" + random.choice(files)
