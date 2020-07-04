@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% load static%}
+{% block head %}
+<style>
+    #canvas {
+         border:5px solid magenta;
+         background-position: center;
+         background-repeat: no-repeat;
+         background-size: contain;
+     }
+</style>
+{% endblock %}
+{% block containerbody %}
+<h1 class="retro">test</h1>
+<ol>
+{% for image in images %}
+<li class="retro">
+    <canvas id="canvas" width="800" height="600" style="background-image: url({{ image.image.image_thumbnail.url }})">
+        이 브라우저는 캔버스를 지원하지 않습니다.
+    </canvas>
+    <h2 style="color: ivory;">{{ image.tag.name }}</h2>
+    <h2 style="color: ivory;">{{ image.image }}</h2>
+    <h2 style="color: ivory;">{{ image.box }}</h2>
+    <p></p>
+    <p></p>
+    <p></p>
+</li>
+{% endfor %}
+</ol>
+
+<script>
+    var canvas;
+    var ctx;
+    var arRectangle = new Array();
+    var sx, sy;                  // 드래그 시작점
+    var ex, ey;                  // 드래그 끝점
+    var color;               // 현재 색상
+    var drawing;                // 그리고 있는 중인가
+    var moving = -1;              // 이동중인 도형 첨자
+    var arrTagPosition = new Array();
+    var TagPosition;
+
+    function Rectangle(sx, sy, ex, ey, color) {
+        this.sx = sx;
+        this.sy = sy;
+        this.ex = ex;
+        this.ey = ey;
+        this.color = color;
+    }
+
+    function drawRects() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        for (var i = 0;i < arRectangle.length;i++) {
+            var r = arRectangle[i];
+            ctx.fillStyle = r.color;
+            ctx.fillRect(r.sx, r.sy, r.ex-r.sx, r.ey-r.sy);
+            ctx.strokeRect(r.sx, r.sy, r.ex-r.sx, r.ey-r.sy);
+        }
+    }
+
+    function canvasX(clientX) {
+        var bound = canvas.getBoundingClientRect();
+        var bw = 5;
+        return (clientX - bound.left - bw) * (canvas.width / (bound.width - bw * 2));
+    }
+
+    function canvasY(clientY) {
+        var bound = canvas.getBoundingClientRect();
+        var bw = 5;
+        return (clientY - bound.top - bw) * (canvas.height / (bound.height - bw * 2));
+    }
+
+    const canvass = document.querySelectorAll('canvas')
+</script>
+{% endblock%}

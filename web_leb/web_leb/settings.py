@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'yesorno',
     'ranking',
     'bootstrap4',
     'django_extensions',
