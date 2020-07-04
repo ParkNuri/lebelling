@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .forms import ImgForm, BoxForm
 from images.models import Image, Box, Tag, ImageUserTagBox
 import random
+from django.db.models import Count, Sum
 
 # Create your views here.
 def boxing(request):
@@ -15,11 +16,7 @@ def tag(request):
     except:
         imgnum = random.randint(3,imgcount)
         image = Image.objects.get(pk=imgnum)
-    tags = ImageUserTagBox.objects.filter(image_id=imgnum).filter(tag_id__gte=1)
-    taglist = []
-    for tag in tags:
-        tagname = Tag.objects.get(pk=tag.tag_id).name
-        taglist.append(tagname)
+    taglist = image.tags.annotate(tag_count=Sum('name')).order_by('-tag_count')
     context = {
         'image' : image,
         'taglist' : taglist
@@ -44,7 +41,8 @@ def save_position(request, image_pk):
     positions = request.POST.get('position').split(',')
     for position in positions:
         strs = position.split('/')
-        saveBox = Box.objects.create(lefttopx=strs[0], lefttopy=int(round(float(strs[1]))), rightbotx=strs[2], rightboty=int(round(float(strs[3]))))
+        lx, ly, rx, ry = map(lambda x: int(round(float(x))), strs)
+        saveBox = Box.objects.create(lefttopx=lx, lefttopy=ly, rightbotx=rx, rightboty=ry)
         ImageUserTagBox.objects.create(image=saveImage, user=request.user, box=saveBox)
     
     return redirect('boxing:nontag')

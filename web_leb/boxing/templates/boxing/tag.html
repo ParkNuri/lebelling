@@ -42,7 +42,7 @@
           </tr>
           {% for tag in taglist %}
             <tr>
-              <td class="tag">{{ tag }}</td>
+              <td class="tag">{{ tag.name }}</td>
               <td class="colorxy" id="{{tag}}"></td>
             </tr>
           {% endfor %}
@@ -269,6 +269,7 @@
         axios.post('/boxing/save_tag_position/{{ image.pk }}/', data)
             .then(data => {
                   console.log(data)
+                  location.href="/boxing/tag/"
             })
   })
   
