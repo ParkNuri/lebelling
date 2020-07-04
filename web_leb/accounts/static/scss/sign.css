@@ -110,7 +110,9 @@ input {
 .left button{
   color: #CCB69B !important;
 }
-
+.right a {
+  color: #6610f2 !important;
+}
 .right button{
   color: #6610f2 !important;
 }

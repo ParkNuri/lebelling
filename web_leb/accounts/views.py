@@ -14,7 +14,6 @@ def signup(request):
         signupform = CustomUserCreationForm(request.POST)
         loginform = AuthenticationForm()
         if signupform.is_valid():
-            print("?"*30)
             user = signupform.save()
             auth_login(request, user)
             return redirect('mainpage:index')
