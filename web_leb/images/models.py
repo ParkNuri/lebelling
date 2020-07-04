@@ -57,7 +57,7 @@ class ImageUserTagBox(models.Model):
         constraints = [
             #한 명의 사람은 한 개의 이미지에 같은 태그를 하나만 달 수 있도록
             #(ex:'A'라는 사람은 'IMAGE1.jpg'에 '사람'이라는 태그를 하나만 달 수 있음)
-            models.UniqueConstraint(fields=['image', 'tag', 'user'], name='unique_imagetaguser'),
+            models.UniqueConstraint(fields=['image', 'tag', 'user', 'box'], name='unique_imagetaguserbox'),
         ]
 
 # class ImageBoxUser(models.Model):
