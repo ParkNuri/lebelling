@@ -6,9 +6,11 @@ from django.conf import settings
 from images.models import Image, Tag, ImageUserTagBox
 from accounts.models import User
 from django.views.decorators.http import require_POST
+from django.contrib.auth.decorators import login_required
 from django.db.models import Count, Sum
 
 # Create your views here.
+@login_required
 def images(request):
     if request.method == 'POST':
         datalen = len(list(request.POST))
@@ -27,6 +29,7 @@ def images(request):
         }
         return render(request, 'taging/images.html',context)
 
+@login_required
 @require_POST
 def addtag(request, image_pk):
     user = User.objects.get(username=request.user)
