@@ -263,8 +263,6 @@
   <title>Document</title>
 {% endblock %}
 {% block containerbody %}
-  <!-- <h1 class="retro">박스!!</h1>
-  <div style="display: inline-block;"> -->
 <div class="container" style="text-align: center;">
       <div class="row">
             <div class="col-sm-10" style="height: 75px; margin: auto; background-color: rgb(233, 38, 119); border-left: 10px solid yellow; border-right: 10px solid yellow;">
@@ -283,7 +281,7 @@
       <div class="row">
             <div class="col-50"  style="margin-left: 90px; height: 420px; background-color: #0f0f1c; width: 50px; border-right: 10px solid yellow;"></div>
             <div class="col-sm-9" style="text-align: center; height: 420px;  background-color: #8c94a04b; padding-top: 10px; padding-bottom: 10px; width: 980px;">
-                  <div style="background-color: black;">
+                  <div style="background-color: black; padding-top: 5px;">
                         <canvas id="canvas" width="600" height="400">
                               이 브라우저는 캔버스를 지원하지 않습니다.
                         </canvas>
@@ -473,16 +471,6 @@
 
   }
 
-  var btnfinish = document.getElementById("btnfinish");
-
-  btnfinish.onclick = function(e) {
-
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        arRectangle.length = 0;
-      //   arrPosition.length = 0;
-
-  }
-
   function randomItem(a) {
         return a[Math.floor(Math.random()*a.length)];
   }
@@ -505,9 +493,11 @@
 
   }
 
-  document.querySelector('#btnfinish').addEventListener('submit', function(event) {
+  document.querySelector('#submit').addEventListener('submit', function(event) {
         event.preventDefault()
         console.log(arrPosition)
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        arRectangle.length = 0;
         const data = new FormData()
         data.append('position', arrPosition)
         console.log(data)

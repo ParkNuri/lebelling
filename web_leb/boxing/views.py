@@ -53,7 +53,7 @@ def save_tag_position(request, image_pk):
     for tagPosition in tagPositions:
         strs = tagPosition.split('/')
         saveTag = Tag.objects.get(name=strs[0])
-        saveBox = Box.objects.create(lefttopx=strs[1], lefttopy=int(round(float(strs[2]))), rightbotx=strs[3], rightboty=int(round(float(strs[4]))))
+        saveBox = Box.objects.create(lefttopx=int(round(float(strs[1]))), lefttopy=int(round(float(strs[2]))), rightbotx=int(round(float(strs[3]))), rightboty=int(round(float(strs[4]))))
         ImageUserTagBox.objects.create(image=saveImage, user=request.user, tag=saveTag, box=saveBox)
     return redirect('boxing:tag')
 
