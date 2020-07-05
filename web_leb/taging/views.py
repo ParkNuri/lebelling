@@ -12,22 +12,12 @@ from django.db.models import Count, Sum
 # Create your views here.
 @login_required
 def images(request):
-    if request.method == 'POST':
-        datalen = len(list(request.POST))
-        datalist = list(request.POST)
-        #print(len(list(request.POST)))
-        #print(list(request.POST))
-        for i in range(1,datalen):
-            print(datalist[i])
-        return render(request, 'taging/images.html')
-    else:
-        allimage = Image.objects.all()
-        image = random.choice(list(allimage))
-        context = {
-            'image' : image.image.url,
-            'image_pk' : image.pk
-        }
-        return render(request, 'taging/images.html',context)
+    image = Image.objects.order_by('?').first()
+    context = {
+        'image' : image.image.url,
+        'image_pk' : image.pk
+    }
+    return render(request, 'taging/images.html',context)
 
 @login_required
 @require_POST
