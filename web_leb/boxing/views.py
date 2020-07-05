@@ -9,13 +9,8 @@ def boxing(request):
     return render(request, 'boxing/index.html')
 
 def tag(request):
-    imgcount = Image.objects.all().count()
-    try:
-        imgnum = random.randint(1,imgcount)
-        image = Image.objects.get(pk=imgnum)
-    except:
-        imgnum = random.randint(3,imgcount)
-        image = Image.objects.get(pk=imgnum)
+    image_pk = random.choice(ImageUserTagBox.objects.filter(box_id__isnull=True)).image_id 
+    image = get_object_or_404(Image, pk=image_pk)
     taglist = image.tags.annotate(tag_count=Sum('name')).order_by('-tag_count')
     context = {
         'image' : image,
