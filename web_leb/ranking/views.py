@@ -5,7 +5,6 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.views import templates
 from accounts.models import Point
-from django.db.models import Count, Sum
 
 import operator
 
