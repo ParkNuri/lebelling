@@ -301,15 +301,23 @@
         </div>
   </div>
   <div class="row">
-        <div class="row col-sm-10" style="height: 180px; margin: auto; background-color: #8c94a0c4; border-left: 10px solid yellow; border-right: 10px solid yellow;">
+        <div class="row col-sm-10" style="height: 200px; margin: auto; background-color: #8c94a0c4; border-left: 10px solid yellow; border-right: 10px solid yellow;">
               <div style="height: 180px;" class="col-sm-8">
                   {% for tag in taglist %}
                   <div class='wrapper'>
                     <div role='button' class='retro-btn danger'>
-                    <a class='btn btntest'>
+                      {% if tag.name|length >= 4 %}
+                      <a class='btn'>
+                      {% else %}
+                      <a class='btn btntest'>
+                      {% endif %}
                         <span class='btn-inner'>
                         <span class='content-wrapper'>
+                            {% if tag.name|length >= 4 %}
+                            <span class='tag btn-content2'>
+                            {% else %}
                             <span class='tag btn-content'>
+                            {% endif %}
                             <span class='btn-content-inner' label="">
                                 <h3 class="retro middle-size-font">{{ tag.name }}</h3>
                             </span>
