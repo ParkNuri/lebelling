@@ -5,7 +5,7 @@ class ImgForm(forms.ModelForm):
     class Meta:
         model = Image
         # fields = '__all__'
-        exclude = ['status']
+        exclude = ['tags', 'status']
 
 class BoxForm(forms.ModelForm):
     class Meta:
