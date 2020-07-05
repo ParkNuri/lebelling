@@ -45,7 +45,7 @@
   line-height: 50px;
 }
 .retro-btn.lg .btn .btn-inner .content-wrapper .btn-content .btn-content-inner:before {
-  padding-top: 0;
+  padding-top: 0px;
   letter-spacing: .15em;
 }
 .retro-btn.sm .btn {
@@ -138,8 +138,8 @@
   content: " ";
   background-color: rgba(13, 13, 13, 0.3);
   width: calc(90% - 2px);
-  height: calc(100% - 10px);
-  bottom: -3px;
+  height: calc(70px - 3px);
+  top: 22px;
   right: 2px;
   position: absolute;
   border-radius: 10px;
@@ -212,13 +212,20 @@
   height: 100%;
   top: 0;
   left: 0;
-}
-.retro-btn .btn .btn-inner .content-wrapper:before {
+}.retro-btn .btn .btn-inner .content-wrapper .btn-content2:after, .retro-btn .btn .btn-inner .content-wrapper .btn-content2:before, .retro-btn .btn .btn-inner .content-wrapper .btn-content2 .btn-content-inner:before {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}.retro-btn .btn .btn-inner .content-wrapper:before {
   background-image: initial;
   background-color: #004d40;
   content: " ";
   border-radius: 15px;
-  top: auto;
+  top: 30px;
+  height: 45px;
   bottom: -10px;
   z-index: 1;
   -webkit-transition: background .185s ease-out, -webkit-transform .185s ease-out;
@@ -237,6 +244,35 @@
 .retro-btn .btn .btn-inner .content-wrapper .btn-content {
   background-image: initial;
   background-color: #26a69a;
+  color: #ebf1f8;
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  border-radius: 15px;
+  text-indent: 0;
+  z-index: 3;
+  overflow: hidden;
+  padding: 0 16px;
+  -webkit-transition: border .185s ease-out,background .185s ease-out,color .185s ease-out,-webkit-transform .185s ease-out;
+  transition: border .185s ease-out,background .185s ease-out,color .185s ease-out,-webkit-transform .185s ease-out;
+  transition: border .185s ease-out,transform .185s ease-out,background .185s ease-out,color .185s ease-out;
+  transition: border .185s ease-out,transform .185s ease-out,background .185s ease-out,color .185s ease-out,-webkit-transform .185s ease-out;
+}
+.retro-btn .btn .btn-inner .content-wrapper .btn-content2 {
+  height: 68px;
+  margin-bottom: 10px;
+  background-image: initial;
+  background-color: red;
   color: #ebf1f8;
   position: relative;
   display: -webkit-box;
@@ -294,6 +330,50 @@
   transition: opacity 75ms ease-out .1125s;
 }
 .retro-btn .btn .btn-inner .content-wrapper .btn-content .btn-content-inner:before {
+  content: attr(label);
+  padding-top: 9.5px;
+  font-size: .8em;
+  font-family: 'Press Start 2P', cursive;
+  letter-spacing: .06em;
+  -webkit-transition: opacity .3s ease-out, background-color .1125s ease-in;
+  transition: opacity .3s ease-out, background-color .1125s ease-in;
+  opacity: 1;
+  z-index: -1;
+}
+
+.retro-btn .btn .btn-inner .content-wrapper .btn-content2:before, .retro-btn .btn .btn-inner .content-wrapper .btn-content2:after {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.8);
+  opacity: 0;
+  -webkit-transition: opacity .1125s ease-out .05s, -webkit-transform .185s ease-out .05s;
+  transition: opacity .1125s ease-out .05s, -webkit-transform .185s ease-out .05s;
+  transition: transform .185s ease-out .05s, opacity .1125s ease-out .05s;
+  transition: transform .185s ease-out .05s, opacity .1125s ease-out .05s, -webkit-transform .185s ease-out .05s;
+}
+.retro-btn .btn .btn-inner .content-wrapper .btn-content2:before {
+  content: " ";
+  -webkit-transform: translate3d(0, 50%, 0);
+  transform: translate3d(0, 50%, 0);
+}
+.retro-btn .btn .btn-inner .content-wrapper .btn-content2:after {
+  content: " ";
+  -webkit-transform: translate3d(0, -50%, 0);
+  transform: translate3d(0, -50%, 0);
+}
+.retro-btn .btn .btn-inner .content-wrapper .btn-content2 .btn-content-inner {
+  display: block;
+  -webkit-transition: opacity 75ms ease-out .1125s;
+  transition: opacity 75ms ease-out .1125s;
+}
+.retro-btn .btn .btn-inner .content-wrapper .btn-content2 .btn-content-inner:before {
   content: attr(label);
   padding-top: 9.5px;
   font-size: .8em;
