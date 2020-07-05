@@ -4,5 +4,7 @@ from . import views
 app_name = "yesorno"
 
 urlpatterns = [
-    path('info/', views.yesnoinfo, name="yesnoinfo"),
+    path('', views.yesnoinfo, name="yesnoinfo"),
+    path('right/', views.rightobj, name="rightobj"),
+    path('wrong/', views.wrongobj, name="wrongobj"),
 ]
