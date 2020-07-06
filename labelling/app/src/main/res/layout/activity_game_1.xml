@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/outerview"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -9,12 +10,19 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/image"
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/viewpager"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="fitXY"
-            tools:srcCompat="@tools:sample/avatars" />
+            android:layout_height="match_parent" />
+
+        <!--<fragment
+            android:id="@+id/imgfragment"
+            android:name="com.example.labelling.ImageFragment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|clip_vertical|center_horizontal"
+            tools:layout="@layout/fragment_image" />-->
 
         <ImageView
             android:id="@+id/right"
@@ -43,6 +51,24 @@
             android:layout_height="50dp"
             android:layout_gravity="center|left"
             app:srcCompat="@drawable/left" />
+
+        <ScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="TextView" />
+            </LinearLayout>
+        </ScrollView>
+
     </FrameLayout>
 
 </LinearLayout>

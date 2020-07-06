@@ -6,103 +6,130 @@
     android:background="#B9EE2F46"
     android:orientation="vertical">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:background="@drawable/rect_bgr"
         android:gravity="center_vertical|center_horizontal"
-        android:orientation="vertical"
-        android:padding="30dp">
+        android:background="@drawable/rect_bgr">
 
-        <TextView
-            android:id="@+id/title_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-light"
-            android:text="SignUp"
-            android:textAlignment="center"
-            android:textSize="50sp" />
-
-        <View
-            android:id="@+id/view"
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:layout_marginLeft="80dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="80dp"
-            android:layout_marginBottom="30dp"
-            android:background="#A1858585" />
-
-        <EditText
-            android:id="@+id/email"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:ems="10"
-            android:hint="e-mail"
-            android:inputType="textEmailAddress" />
+            android:gravity="center_vertical|center_horizontal"
+            android:orientation="vertical"
+            android:padding="30dp">
 
-        <EditText
-            android:id="@+id/password"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:ems="10"
-            android:hint="password"
-            android:inputType="textPassword" />
+            <TextView
+                android:id="@+id/title_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-light"
+                android:text="SignUp"
+                android:textAlignment="center"
+                android:textSize="50sp" />
 
-        <EditText
-            android:id="@+id/password_check"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:ems="10"
-            android:hint="check password"
-            android:inputType="textPassword" />
+            <View
+                android:id="@+id/view"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginLeft="80dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="80dp"
+                android:layout_marginBottom="30dp"
+                android:background="#A1858585" />
 
-        <EditText
-            android:id="@+id/name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:ems="10"
-            android:hint="name"
-            android:inputType="textPersonName" />
+            <EditText
+                android:id="@+id/email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:ems="10"
+                android:hint="e-mail"
+                android:inputType="textEmailAddress" />
 
-        <EditText
-            android:id="@+id/birthday"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:ems="10"
-            android:hint="birthday"
-            android:inputType="date" />
+            <TextView
+                android:id="@+id/emailcheck_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp" />
 
-        <EditText
-            android:id="@+id/phone"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:ems="10"
-            android:hint="phone"
-            android:inputType="phone" />
+            <EditText
+                android:id="@+id/password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:ems="10"
+                android:hint="password"
+                android:inputType="textPassword" />
 
-        <EditText
-            android:id="@+id/job"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:ems="10"
-            android:hint="job"
-            android:inputType="textPersonName" />
+            <TextView
+                android:id="@+id/passcheck_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp" />
 
-        <Button
-            android:id="@+id/submit_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="submit" />
+            <EditText
+                android:id="@+id/password_check"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:ems="10"
+                android:hint="check password"
+                android:inputType="textPassword" />
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/passcheckcheck_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp" />
+
+            <EditText
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:ems="10"
+                android:hint="name"
+                android:inputType="textPersonName" />
+
+            <EditText
+                android:id="@+id/birthday"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:ems="10"
+                android:hint="birthday"
+                android:inputType="date" />
+
+            <EditText
+                android:id="@+id/phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:ems="10"
+                android:hint="phone"
+                android:inputType="phone" />
+
+            <EditText
+                android:id="@+id/job"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:ems="10"
+                android:hint="job"
+                android:inputType="textPersonName" />
+
+            <Button
+                android:id="@+id/submit_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="submit" />
+
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>
